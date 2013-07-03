@@ -1,0 +1,57 @@
+Welcome to the RasPiConnectServer ReadMe file
+Version 2.5
+07/03/2013
+
+Minor Release 
+- Added ACTION_BUTTON_UITYPE
+- Fixed reporting of number of pages in a save file
+- Added "AR" indicator that the Auto Refresh is active
+- Fixed Selection moving bug in Layout Screen
+
+This is the RasPiConnectServer designed for the RasPiConnect App available on the Apple AppStore
+
+For complete documentation, see www.milocreek.com
+
+
+
+Description of directories and files in the RasPiConnectServer package:
+
+ReadMe - This file
+startserver.sh - script for use in rc.local startup script - see below
+config - contains user configurable values
+ClientXMLConfigFiles - example and user configuration files for the iPad Client RasPiConnect
+ExecuteFiles - contains control execution files for RasPiConnectServer.py
+local - user execution files
+RasPiConnectServer.py - RasPiConnectServer python file
+RasPilib - contains support files for RasPiConnect
+Adafruit - contains files for Adafruit example I2C sensors
+static - contains image and static files that are served by RasPiConnectServer
+sounds - example Rasberry Pi sounds
+
+startserver.sh - script to start the server 
+
+(Note: You may wish to change the amixer command in the script.  the command form is:  sudo amixer cset numid=3 <n>.  Substituting <n> for the desired mode: 0=auto, 1=headphones, 2=hdmi. For example, to force the Raspberry Pi to use the analog output:
+sudo amixer cset numid=3 1) 
+
+There are three ways of starting the RasPiConnect server:
+
+ 
+1) Running from the command line:  python RasPiConnectServer.py 
+For the RasPiConnectServer to continue working, the terminal window must remain open.
+
+2) Running in the background from the command line:  nohup python RasPiConnectServer.py &
+This runs the RasPiConnectServer in the background and the "nohup" means that it will continue running even if you terminate the terminal or log out.  Output from the RasPiConnectServer will be placed in the same directory in a file "nohup.out"
+
+3) Running RasPiConnectServer on startup.
+
+etc/rc.local is a script on the Raspberry Pi which runs when Linux first boots. To edit it, you will need root privileges:
+
+sudo nano /etc/rc.local
+
+and add to the file (before the exit 0 statement):
+
+date >> /var/log/RasPiConnectServer.log
+echo "Starting RasPiConnectServer..." >> /var/log/RasPiConnectServer.log
+nohup /home/pi/RasPiConnectServer/startserver.sh >>/var/log/RasPiConnectServer.log 2>&1 &
+
+
