@@ -7,7 +7,9 @@ import Config
 import subprocess
 import sys
 
-from Adafruit_BMP085 import * 
+if (Config.i2c_demo()):
+	from Adafruit_BMP085 import * 
+
 import time
 import Validate
 import BuildResponse
