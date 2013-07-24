@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # Filename: RasPiConnectServer.py
-# Version 2.1 4/8/13 RV MiloCreek
+# Version 2.6 7/15/13 RV MiloCreek
 
 #set up sub directories 
 
@@ -66,6 +66,7 @@ urls = (
     '/Raspi', 'RasPi',
     '/RasPi', 'RasPi',
     '/Version', 'Version',
+    '/version', 'Version',
     '/(.*)', 'index'
 )
 

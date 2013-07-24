@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # Filename: config.py
-# Version 1.3 04/22/13 JS MiloCreek
+# Version 2.6 07/18/13 BP MiloCreek
 
 # set to True if you wish to see debugging output from the server otherwise False
 DEBUG = False 
@@ -10,7 +10,11 @@ WEB_SERVER_PORT = "9600"
 
 #LOCALURL is the address of your pi. If you poke a hole through your firewall and expose it to the Internet, insert that address here 
 #Usually, the port in the URL (9600) will match the WEB_SERVER_PORT above but can be remapped in most routers/firewalls
+# Note that the address for your SystemURL in the RasPiConnectApp should be of the form:  http://192.168.1.120:9600/raspi (see manual for more information)
+
 LOCALURL = "http://192.168.1.120:9600/"
+print LOCALURL
+
 
 #USERNAME is the username that you have entered in the RasPiConnect App.  It must match and is case sensitive
 USERNAME = "RasPiConnect"
@@ -22,7 +26,7 @@ PASSWORD = "RasPiConnectPassword"
 I2CDEMO = False 
 
 #RASPICONNECTSERVER Version Number.  Do not change!
-VERSIONNUMBER = '2.5'
+VERSIONNUMBER = '2.6'
 
 def localURL():
 	return LOCALURL
