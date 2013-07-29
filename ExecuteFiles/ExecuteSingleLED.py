@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # Filename: ExecuteSingleLED.py
-# Version 1.0 03/07/13 RV MiloCreek
+# Version 2.7 07/29/13 RV MiloCreek
 
 import Config
 
@@ -11,7 +11,9 @@ import Validate
 import BuildResponse
 
 import time
-from pyblinkm import BlinkM, Scripts
+
+if (Config.i2c_demo()):
+	from pyblinkm import BlinkM, Scripts
 
 
 def Execute_Single_LED(root):

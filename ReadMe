@@ -1,12 +1,14 @@
 Welcome to the RasPiConnectServer ReadMe file
-Version 2.5
-07/03/2013
+Version 2.7
 
+07/29/2013
+Minor Release 
+- Fixed additional i2c dependencies
+
+07/03/2013
 Minor Release 
 - Added FEEDBACK_ACTION_BUTTON_UITYPE
 - Fixed reporting of number of pages in a save file
-- Added "AR" indicator that the Auto Refresh is active
-- Fixed Selection moving bug in Layout Screen
 
 This is the RasPiConnectServer designed for the RasPiConnect App available on the Apple AppStore
 
