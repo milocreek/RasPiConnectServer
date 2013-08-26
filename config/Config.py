@@ -1,6 +1,6 @@
 #!/usr/bin/python
-# Filename: config.py
-# Version 2.7 07/18/13 BP MiloCreek
+# Filename: Config.py
+# Version 2.8 07/18/13 BP MiloCreek
 
 # set to True if you wish to see debugging output from the server otherwise False
 DEBUG = False 
@@ -26,7 +26,7 @@ PASSWORD = "RasPiConnectPassword"
 I2CDEMO = False 
 
 #RASPICONNECTSERVER Version Number.  Do not change!
-VERSIONNUMBER = '2.7'
+VERSIONNUMBER = '2.8'
 
 def localURL():
 	return LOCALURL

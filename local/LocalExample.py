@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # Filename: LocalExample.py
 # MiloCreek JS MiloCreek
-# Version 1.1 4/8/13
+# Version 2.8 8/12/13
 #
 # Local Execute Objects for RasPiConnect  
 # to add Execute objects, modify this file 
@@ -13,9 +13,10 @@
 REMOTE_WEBVIEW_UITYPE = 1
 ACTION_BUTTON_UITYPE = 16
 FEEDBACK_ACTION_BUTTON_UITYPE = 17
-SINGLE_LED_DISPLAY = 32
+SINGLE_LED_DISPLAY_UITYPE = 32
 SPEEDOMETER_UITYPE = 64
 VOLTMETER_UITYPE = 128
+BARMETER_UITYPE = 129
 SERVER_STATUS_UITYPE = 256
 PICTURE_REMOTE_WEBVIEW_UITYPE = 512
 LABEL_UITYPE = 1024

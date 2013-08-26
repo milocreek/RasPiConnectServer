@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # Filename: RasPiConnectServer.py
-# Version 2.6 7/15/13 RV MiloCreek
+# Version 2.8 8/12/13 RV MiloCreek
 
 #set up sub directories 
 
@@ -41,9 +41,10 @@ import ExecuteFileDirectory
 REMOTE_WEBVIEW_UITYPE = 1
 ACTION_BUTTON_UITYPE = 16
 FEEDBACK_ACTION_BUTTON_UITYPE = 17
-SINGLE_LED_DISPLAY = 32
+SINGLE_LED_DISPLAY_UITYPE = 32
 SPEEDOMETER_UITYPE = 64
 VOLTMETER_UITYPE = 128
+BARMETER_UITYPE = 129
 SERVER_STATUS_UITYPE = 256
 PICTURE_REMOTE_WEBVIEW_UITYPE = 512
 LABEL_UITYPE = 1024
@@ -243,9 +244,9 @@ class RasPi:
 				outgoingData += ExecuteFreqModLED.Execute_Freq_Mod_LED(element)
 	
 			# call single LED objects
-			elif (objectType == SINGLE_LED_DISPLAY): 
+			elif (objectType == SINGLE_LED_DISPLAY_UITYPE): 
 			 	if (Config.debug()):
-					print "SINGLE_LED_DISPLAY found"
+					print "SINGLE_LED_DISPLAY_UITYPE found"
 				outgoingData += ExecuteSingleLED.Execute_Single_LED(element)
 		
 			# call speedometer objects 
@@ -259,6 +260,12 @@ class RasPi:
 			 	if (Config.debug()):
 					print "VOLTMETER_UITYPE found"
 				outgoingData += ExecuteMeter.Execute_Meter(element)
+	
+			# call barmeter objects 
+			elif (objectType == BARMETER_UITYPE): 
+			 	if (Config.debug()):
+					print "BARMETER_UITYPE found"
+				outgoingData += ExecuteMeter.Execute_BarMeter(element)
 	
 			# call server objects 
 			elif (objectType == SERVER_STATUS_UITYPE): 
