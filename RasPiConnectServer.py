@@ -26,6 +26,7 @@ import xml.etree.ElementTree as ET
 
 import ExecuteServerStatus 
 import ExecuteMeter
+import ExecuteBarMeter
 import ExecuteRemoteWebView
 import ExecuteActionButton 
 import ExecuteSingleLED 
@@ -265,7 +266,7 @@ class RasPi:
 			elif (objectType == BARMETER_UITYPE): 
 			 	if (Config.debug()):
 					print "BARMETER_UITYPE found"
-				outgoingData += ExecuteMeter.Execute_BarMeter(element)
+				outgoingData += ExecuteBarMeter.Execute_BarMeter(element)
 	
 			# call server objects 
 			elif (objectType == SERVER_STATUS_UITYPE): 
