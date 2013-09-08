@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # Filename: RasPiConnectServer.py
-# Version 2.8 8/12/13 RV MiloCreek
+# Version 2.9 9/07/13 RV MiloCreek
 
 #set up sub directories 
 
