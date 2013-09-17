@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # Filename: ExecuteWebView.py
-# Version 2.1 04/13/13 RV MiloCreek
+# Version 2.2 09/17/13 RV MiloCreek
 
 import Config
 
@@ -143,11 +143,19 @@ def Generate_Remote_WebView(root, LOCALURL):
 		cpuTemp = "%3.2f C" % (float(output)/1000.0)
 			
 		responseData = responseData.replace("GGG", cpuTemp)	
-		
-		freeString = subprocess.check_output(["ifconfig", "eth0"])	
-		freeSplit = freeString.split("inet addr:", 1)
-		freeSplit = freeSplit[1].split(" ", 1)
-		freeData = freeSplit[0]
+
+		try:	
+			freeString = subprocess.check_output(["ifconfig", "eth0"])	
+			freeSplit = freeString.split("inet addr:", 1)
+			if (len(freeSplit) > 1):
+				freeSplit = freeSplit[1].split(" ", 1)
+				freeData = freeSplit[0]
+			else:
+				freeData = ""
+
+		except:
+			freeData = ""
+
 
 		responseData = responseData.replace("HHH", freeData)	
 			
