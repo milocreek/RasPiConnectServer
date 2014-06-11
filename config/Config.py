@@ -26,7 +26,7 @@ PASSWORD = "RasPiConnectPassword"
 I2CDEMO = False 
 
 #RASPICONNECTSERVER Version Number.  Do not change!
-VERSIONNUMBER = '2.9'
+VERSIONNUMBER = '3.0'
 
 def localURL():
 	return LOCALURL
