@@ -1,39 +1,33 @@
-#!/usr/bin/python
-# Filename: LocalExample.py
-# MiloCreek JS MiloCreek
-# Version 2.8 8/12/13
-#
+#!/usr/bin/python 
+# Filename: local.py 
+# MiloCreek BP MiloCreek 
+# Version 3.0 6/11/2014 
+# 
 # Local Execute Objects for RasPiConnect  
 # to add Execute objects, modify this file 
+# 
 #
 #
-#
-# RasPiConnectServer interface constants
-
-REMOTE_WEBVIEW_UITYPE = 1
-ACTION_BUTTON_UITYPE = 16
-FEEDBACK_ACTION_BUTTON_UITYPE = 17
-SINGLE_LED_DISPLAY_UITYPE = 32
-SPEEDOMETER_UITYPE = 64
-VOLTMETER_UITYPE = 128
-BARMETER_UITYPE = 129
-SERVER_STATUS_UITYPE = 256
-PICTURE_REMOTE_WEBVIEW_UITYPE = 512
-LABEL_UITYPE = 1024
-FM_BLINK_LED_UITYPE = 2048
-TEXT_DISPLAY_UITYPE = 4096
-TOGGLE_SWITCH_UITYPE = 33
-SEND_TEXT_UITYPE = 34
 
 # system imports
 import sys
 import subprocess
-
+import os
+import time
 # RasPiConnectImports
 
 import Config
 import Validate
 import BuildResponse 
+
+import RPi.GPIO as GPIO ## Import GPIO library
+GPIO.setmode(GPIO.BOARD) ## Use board pin numbering
+GPIO.setup(7, GPIO.OUT) ## Setup GPIO Pin 7 to OUT
+
+# To put an LED on GPIO Pin 7 on your pi read this:
+#		http://www.thirdeyevis.com/pi-page-2.php
+#
+
 
 def ExecuteUserObjects(objectType, element):
 
@@ -61,45 +55,54 @@ def ExecuteUserObjects(objectType, element):
 
 	outgoingXMLData = BuildResponse.buildHeader(element)
 
-
-	# objects are split up by object types by Interface Constants
 	#
-	#
-	#
-	# search for matches to object Type 
+	# B-1 Flashes LED on GPIO
+	if (objectServerID == "B-1"):	
 
-	# object Type match
-	if (objectType == ACTION_BUTTON_UITYPE):
+               	#check for validate request
+		# validate allows RasPiConnect to verify this object is here 
 
-		if (Config.debug()):
-			print "ACTION_BUTTON_UTYPE of %s found" % objectServerID
+               	if (validate == "YES"):
+                       	outgoingXMLData += Validate.buildValidateResponse("YES")
+                       	outgoingXMLData += BuildResponse.buildFooter()
+                       	return outgoingXMLData
 
-		# B-2 - play a beep on the Raspberry Pi
-		if (objectServerID == "B-2"):	
+		# not validate request, so execute
+		#
+		
+		#
+		#
+		# Execute your code
+		#
+		#
 
-                	#check for validate request
-			# validate allows RasPiConnect to verify this object is here 
-                	if (validate == "YES"):
-                        	outgoingXMLData += Validate.buildValidateResponse("YES")
-                        	outgoingXMLData += BuildResponse.buildFooter()
-                        	return outgoingXMLData
+		# To put an LED on GPIO Pin 7 on your pi read this:
+		#		http://www.thirdeyevis.com/pi-page-2.php
+		#
+        	if (Config.debug()):
+        		print("Button # %s: Blinking GPIO pin 7" % objectServerID)
 
-			# not validate request, so execute
+		GPIO.output(7,True) ## Turn on GPIO pin 7
+		time.sleep(1) ## sleep 1 second
+		GPIO.output(7,False) ## Turn off GPIO pin 7
+              	responseData = "OK" ## send an OK back to the App
 
-			# note that python is in the main directory for this call, not the local directory
+		print "responseData =", responseData
 
-			output = subprocess.call(["aplay", "sounds/match1.wav"])
-			
-			responseData = "OK"
-                	outgoingXMLData += BuildResponse.buildResponse(responseData)
-      			outgoingXMLData += BuildResponse.buildFooter()
-                	return outgoingXMLData
+		#
+		#
+		# Done with your code
+		#
+		#
+
+               	outgoingXMLData += BuildResponse.buildResponse(responseData)
+      		outgoingXMLData += BuildResponse.buildFooter()
+               	return outgoingXMLData
 		
 
 
 	else:
+		# returning a zero length string tells the server that you have not matched 
+		# the object and server 
 		return ""
-	# returning a zero length string tells the server that you have not matched 
-	# the object and server 
-	return ""
 
